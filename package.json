@@ -1,0 +1,47 @@
+{
+  "name": "grunt-wellington",
+  "description": "Compile Sass to CSS using wellington",
+  "version": "0.1.0",
+  "author": {
+    "name": "Luke Zilioli",
+    "email": "elzee08@gmail.com",
+    "url": "http://lukezilioli.com"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/gruntjs/grunt-contrib-compass/blob/master/LICENSE-MIT"
+    }
+  ],
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "dependencies": {
+    "async": "^0.9.0",
+    "bin-version-check": "^2.0.0",
+    "dargs": "^2.0.3",
+    "tmp": "0.0.24"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-jshint": "^0.10.0"
+  },
+  "peerDependencies": {
+    "grunt": ">=0.4.0"
+  },
+  "keywords": [
+    "gruntplugin",
+    "wellington",
+    "scss",
+    "sass",
+    "css",
+    "compile",
+    "preprocessor",
+    "style"
+  ],
+  "files": [
+    "tasks",
+    "LICENSE-MIT"
+  ]
+}
