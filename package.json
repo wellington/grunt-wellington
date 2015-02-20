@@ -8,12 +8,6 @@
     "url": "http://lukezilioli.com"
   },
   "repository": "https://github.com/wellington/grunt-wellington",
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/gruntjs/grunt-contrib-compass/blob/master/LICENSE-MIT"
-    }
-  ],
   "engines": {
     "node": ">=0.10.0"
   },

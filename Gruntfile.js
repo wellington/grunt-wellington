@@ -1,8 +1,7 @@
 /*
- * grunt-contrib-compass
+ * grunt-wellington
  * http://gruntjs.com/
  *
- * Copyright (c) 2014 Sindre Sorhus, contributors
  * Licensed under the MIT license.
  */
 
@@ -57,7 +56,7 @@ module.exports = function (grunt) {
             compileSass: {
                 src: ['test/fixtures/*.sass'],
                 options: {
-                    //p: 'test/fixtures',
+                    p: 'test/fixtures',
                     b: 'tmp4'
                 }
             },

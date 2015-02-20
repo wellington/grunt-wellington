@@ -145,7 +145,7 @@ exports.init = function (grunt) {
     };
   };
 
-  // build the array of arguments to build the compass command
+  // build the array of arguments to build the wt command
   exports.buildArgsArray = function (options, files) {
     var args = [];
 
