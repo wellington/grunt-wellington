@@ -21,23 +21,29 @@ exports.init = function (grunt) {
   exports.extractRawOptions = function extractRawOptions(options) {
     var raw = options.raw || '';
     var supportedOptions = [
-      'http_path',
-      'css_path',
-      'http_stylesheets_path',
-      'sass_path',
-      'images_path',
-      'http_images_path',
-      'generated_images_dir',
-      'generated_images_path',
-      'http_generated_images_path',
-      'javascripts_path',
-      'http_javascripts_path',
-      'fonts_path',
-      'http_fonts_path',
-      'http_fonts_dir',
-      'extensions_dir',
-      'extension_path',
-      'cache_dir'
+      'b',
+      'c',
+      'comment',
+      'css-dir',
+      'd',
+      'dir',
+      'font',
+      'gen',
+      'h',
+      'help',
+      'http',
+      'httppath',
+      'images-dir',
+      'javascripts-dir',
+      'p',
+      'proj',
+      's',
+      'sass-dir',
+      'style',
+      'time',
+      'version',
+      'w',
+      'watch'
     ];
 
     var usedOptions = Object.keys(options).filter(function (option) {
@@ -110,105 +116,61 @@ exports.init = function (grunt) {
 
   // Create a config file on the fly if there are arguments not supported as
   // CLI, returns a function that runs within the temprorary context.
-  // exports.buildConfigContext = function (options) {
-  //   var rawOptions = exports.extractRawOptions(options);
-  //   if (options.raw && options.config) {
-  //     grunt.warn('The options `raw` and `config` are mutually exclusive');
-  //   }
+  exports.buildConfigContext = function (options) {
+    var rawOptions = exports.extractRawOptions(options);
+    if (options.raw && options.config) {
+      grunt.warn('The options `raw` and `config` are mutually exclusive');
+    }
 
-  //   if (rawOptions.options.length > 0 && options.config) {
-  //     grunt.warn('The option `config` cannot be combined with ' +
-  //                      'these options: ' + rawOptions.options.join(', ') + '.');
-  //   }
+    if (rawOptions.options.length > 0 && options.config) {
+      grunt.warn('The option `config` cannot be combined with ' +
+                       'these options: ' + rawOptions.options.join(', ') + '.');
+    }
 
-  //   return function configContext(cb) {
-  //     if (rawOptions.raw) {
-  //       tmp.setGracefulCleanup();
-  //       tmp.file(function (err, path, fd) {
-  //         if (err) {
-  //           return cb(err);
-  //         }
+    return function configContext(cb) {
+      if (rawOptions.raw) {
+        tmp.setGracefulCleanup();
+        tmp.file(function (err, path, fd) {
+          if (err) {
+            return cb(err);
+          }
 
-  //         // Dynamically create config.rb as a tmp file for the `raw` content
-  //         fs.writeSync(fd, new Buffer(rawOptions.raw), 0, rawOptions.raw.length);
-  //         cb(null, path);
-  //       });
-  //     } else {
-  //       cb(null, null);
-  //     }
-  //   };
-  // };
+          // Dynamically create config.rb as a tmp file for the `raw` content
+          fs.writeSync(fd, new Buffer(rawOptions.raw), 0, rawOptions.raw.length);
+          cb(null, path);
+        });
+      } else {
+        cb(null, null);
+      }
+    };
+  };
 
   // build the array of arguments to build the compass command
   exports.buildArgsArray = function (options, files) {
+    var args = [];
 
-    var args=['wt'];
-    args.push('-p');
+    for (var key in options) {
+      if (options.key != "") {
+        args.push("-"+key);
+        // Special parser for Go booleans
+        if (options[key] != "") {
+          args.push(options[key]);
+        }
+      }
+    }
+
+    // Once files are passed, args can not be specified
     if (files.length > 0) {
       [].push.apply(args, files);
     }
 
-    // var args = ['compile'];
-    // if (options.clean) {
-    //   args = ['clean'];
-    // } else if (options.watch) {
-    //   args = ['watch'];
-    // }
-
-    // var basePath = options.basePath;
-
-    // if (process.platform === 'win32') {
-    //   args.unshift('compass.bat');
-    // } else {
-      // args.unshift('wt');
-    // }
-
-    // if (options.bundleExec) {
-    //   if (process.platform === 'win32') {
-    //     args.unshift('bundle.bat', 'exec');
-    //   } else {
-    //     args.unshift('bundle', 'exec');
-    //   }
-    // }
-
-    // if (options.basePath) {
-    //   args.push(options.basePath);
-    // }
-
-    // if (options.specify) {
-    //   var files = grunt.file.expand({
-    //     filter: function (filePath) {
-    //       return path.basename(filePath)[0] !== '_';
-    //     }
-    //   }, options.specify);
-
-    //   if (files.length > 0) {
-    //     [].push.apply(args, files);
-    //   } else {
-    //     return grunt.log.writeln('`specify` option used, but no files were found.');
-    //   }
-    //   console.log(files);
-    // }
-
-
-    // add converted options
-    // [].push.apply(args, dargs(options, [
-    //   'raw',
-    //   'clean',
-    //   'bundleExec',
-    //   'basePath',
-    //   'specify',
-    //   'watch'
-    // ]));
-
-    // if (grunt.option('no-color')) {
-    //   args.push('--boring');
-    // }
-
-    // if(options.poll) {
-    //   args.push('--poll');
-    // }
-
+    // Inject command
+    if (process.platform === 'win32') {
+      args.unshift('wt.bat');
+    } else {
+      args.unshift('wt');
+    }
+    grunt.log.debug('cli:', args);
     return args;
   };
 
