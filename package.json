@@ -15,6 +15,7 @@
     "async": "^0.9.0",
     "bin-version-check": "^2.0.0",
     "dargs": "^2.0.3",
+    "wellington-bin": "astalick/wellington-bin#eed36eb104cd0e8571337e3a4d6344abf3bb14c5",
     "tmp": "0.0.24"
   },
   "devDependencies": {
