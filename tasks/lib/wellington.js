@@ -5,6 +5,7 @@ exports.init = function (grunt) {
   var dargs = require('dargs');
   var path = require('path');
   var async = require('async');
+  var wellingtonBin = require('wellington-bin');
 
   var exports = {};
 
@@ -164,12 +165,7 @@ exports.init = function (grunt) {
       [].push.apply(args, files);
     }
 
-    // Inject command
-    if (process.platform === 'win32') {
-      args.unshift('wt.bat');
-    } else {
-      args.unshift('wt');
-    }
+    args.unshift( wellingtonBin );
     grunt.log.debug('cli:', args);
     return args;
   };
