@@ -9,6 +9,10 @@ module.exports = function( grunt ) {
             cmd: args.shift(),
             args: args
         }, function( err, result, code ) {
+            // `wt` exits with 1 on general-purpose errors.
+            if ( code === 1){
+                grunt.fatal('A Wellington error occurred.', result.stderr, code);
+            }
             if ( code === 127 ) {
                 grunt.warn(
                     'You need to have Wellington and libsass installed ' +
