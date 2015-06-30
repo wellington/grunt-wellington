@@ -15,7 +15,7 @@
     "async": "^0.9.0",
     "bin-version-check": "^2.0.0",
     "dargs": "^2.0.3",
-    "wellington-bin": "wellington/wellington-bin#f7be82d03f15bd9ad205e604b39ed61a2ac98583",
+    "wellington-bin": "^0.9.1",
     "tmp": "0.0.24"
   },
   "devDependencies": {
