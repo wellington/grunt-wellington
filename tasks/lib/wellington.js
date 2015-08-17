@@ -147,11 +147,15 @@ exports.init = function (grunt) {
 
   // build the array of arguments to build the wt command
   exports.buildArgsArray = function (options, files) {
-    var args = [];
+    var args = ['watch'];
 
     for (var key in options) {
       if (options.key != "") {
-        args.push("-"+key);
+        if (key.length>1) {
+          args.push("--"+key);
+        } else {
+          args.push("-"+key);
+        }
         // Special parser for Go booleans
         if (options[key] != "") {
           args.push(options[key]);
