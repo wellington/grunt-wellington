@@ -6,6 +6,19 @@ exports.init = function (grunt) {
   var path = require('path');
   var async = require('async');
 
+  /**
+   * attempt loading wellington-bin
+   */
+  try {
+    var wellingtonBin = require('wellington-bin');
+  } catch (e) {
+    if (process.platform === 'win32') {
+      wellingtonBin = 'wt.exe';
+    } else {
+      wellingtonBin = 'wt';
+    }
+  }
+
   var exports = {};
 
   function camelCaseToUnderscore(str) {
@@ -147,13 +160,17 @@ exports.init = function (grunt) {
 
   // build the array of arguments to build the wt command
   exports.buildArgsArray = function (options, files) {
-    var args = [];
+    var args = ['compile'];
 
     for (var key in options) {
-      if (options.key != "") {
-        args.push("-"+key);
+      if (options.key != '') {
+        if (key.length>1) {
+          args.push('--'+key);
+        } else {
+          args.push('-'+key);
+        }
         // Special parser for Go booleans
-        if (options[key] != "") {
+        if (options[key] != '') {
           args.push(options[key]);
         }
       }
@@ -165,11 +182,7 @@ exports.init = function (grunt) {
     }
 
     // Inject command
-    if (process.platform === 'win32') {
-      args.unshift('wt.bat');
-    } else {
-      args.unshift('wt');
-    }
+    args.unshift( wellingtonBin );
     grunt.log.debug('cli:', args);
     return args;
   };
