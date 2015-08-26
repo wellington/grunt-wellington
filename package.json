@@ -1,7 +1,7 @@
 {
   "name": "grunt-wellington",
   "description": "Compile Sass to CSS using wellington",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": {
     "name": "Luke Zilioli",
     "email": "elzee08@gmail.com",
