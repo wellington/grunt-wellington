@@ -23,6 +23,95 @@ grunt.loadNpmTasks('grunt-wellington');
 ## Wellington Task
 Run this task with the `grunt wellington` command.
 
+### Options
+All of these options are taken from the list of available commands in the [Wellington project](https://github.com/wellington/wellington/#available-commands).
+
+#### b
+
+Type: `String`
+
+Path to target directory to place generated CSS, relative paths inside project directory are preserved
+
+
+#### comment
+
+Type: `Boolean`
+
+Turn on source comments
+
+
+#### c
+
+Type: `String`
+
+Temporarily disabled: Location of the config file
+
+
+#### debug
+
+Type: `Boolean`
+
+
+Show detailed debug information
+
+
+#### d
+
+Type: `String`
+
+
+Path to locate images for spriting and image functions
+
+
+#### font
+
+Type: `String`
+
+Path to directory containing fonts
+
+
+#### gen
+
+Type: `String`
+
+Path to place generated images
+
+
+#### no-line-comments
+
+Type: `Boolean`
+
+UNSUPPORTED: Disable line comments
+
+
+#### p
+
+Type: `String`
+
+Path to directory containing Sass stylesheets
+
+
+#### relative-assets
+
+Type: `Boolean`
+
+UNSUPPORTED: Make compass asset helpers generate relative urls to assets.
+
+
+#### s
+
+Type: `String`
+
+nested style of output CSS
+available options: `nested`, `expanded`, `compact`, `compressed`
+
+
+#### time
+
+Type: `Boolean`
+
+Retrieve timing information
+
 ## Usage Examples
 
 ### Basic configuration
