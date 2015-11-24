@@ -1,14 +1,14 @@
 {
-  "name": "allfilesbuild",
+  "name": "wellington-watch-example",
   "version": "1.0.0",
-  "description": "test for double watch builds",
+  "description": "An example of how to setup a grunt watch task using grunt-wellington",
   "main": "Gruntfile.js",
   "author": "Ray Pierce",
   "license": "MIT",
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-contrib-watch": "^0.6.1",
-    "grunt-wellington": "^0.1.0",
+    "grunt-wellington": "^0.2.0",
     "load-grunt-tasks": "^3.2.0"
   }
 }
