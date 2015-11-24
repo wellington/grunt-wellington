@@ -1,6 +1,8 @@
+# A Wellington Watch Example
+
 Copied with permissions from [https://github.com/pierceray/allfilesbuild](https://github.com/pierceray/allfilesbuild)
 
-To use grunt-wellington
+## To use grunt-wellington
 
 1. Clone the repo
 2. run `npm install`

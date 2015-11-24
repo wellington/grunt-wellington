@@ -1,62 +1,39 @@
 /* jshint node:true, maxlen:140 */
-
 module.exports = function ( grunt ) {
 
-	grunt.initConfig( {
+    grunt.initConfig( {
 
-		wellington: {
-			www: {
-				src: [
-					'www/gui/sass/**/*.scss',
-					'!www/gui/sass/**/_*.scss'
-				],
-				options: {
-					p: 'www/gui/sass',
-					b: 'www/gui/build/css',
-					d: 'www/gui/im/sass',
-					font: 'www/gui/font-face',
-					gen: 'www/gui/build/im'
-				}
-			},
-			options: {
-				style: 'nested'
-			}
-		},
+        wellington: {
+            dist: {
+                src: [
+                    'sass/**/*.scss',   // Build all .scss files
+                    '!sass/**/_*.scss'  // Don't build files starting with "_" into css files
+                ],
+                options: {
+                    p: 'sass',       // The base folder that contains the sass.
+                    b: 'build/css',  // The output folder for the built css.
+                    d: 'im/sass',    // The input image folder
+                    gen: 'build/im'  // The output folder for the generated sprite files.
+                }
+            },
+            options: {
+                style: 'nested'      // The style of output to be used.
+            }
+        },
 
-		watch: {
-			// A few tasks assume the target_{sass,js} convention.
-			// Namely, sauron and fresh. Take care not to break these tasks
-			// if you edit this section
+        watch: {
+            sass: {
+                files: [ 'sass/**/*.scss' ],
+                tasks: [ 'wellington:www' ]
+            }
+        },
+    } );
 
-			// ONLY ADD CRITICAL TASKS TO THE BELOW TASKS ARRAYS
-			// NON-CRITICAL TASKS SHOULD BE SPECIFIED USING
-			// configs/build/sauronrc.js
-			// see configs/build/sauronrc-defaults.js for more context
-			options: {
-				livereload: grunt.option( 'livereload' ),
-				spawn: false
-			},
-			www_sass: {
-				files: [ 'www/gui/sass/**/*.scss' ],
-				tasks: [ 'wellington:www' ]
-			},
-			grunt_js: {
-				files: [
-					'Gruntfile.js'
-				],
-				options: {
-					reload: true
-				},
-				tasks: []
-			}
-		},
-	} );
+    // Autoload npm tasks using load-grunt-tasks
+    // See more at https://github.com/sindresorhus/load-grunt-tasks
+    // load all grunt tasks matching the ['grunt-*', '@*/grunt-*'] patterns
+    require( 'load-grunt-tasks' )( grunt );
 
-	// Autoload npm tasks using load-grunt-tasks
-	// See more at https://github.com/sindresorhus/load-grunt-tasks
-	// load all grunt tasks matching the ['grunt-*', '@*/grunt-*'] patterns
-	require( 'load-grunt-tasks' )( grunt );
-
-	grunt.registerTask( 'default', 'Removes the generated styles and watches for Sass changes', [ 'watch' ] );
+    grunt.registerTask( 'default', 'Removes the generated styles and watches for Sass changes', [ 'watch' ] );
 
 };
