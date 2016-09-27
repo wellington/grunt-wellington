@@ -34,6 +34,6 @@ module.exports = function ( grunt ) {
     // load all grunt tasks matching the ['grunt-*', '@*/grunt-*'] patterns
     require( 'load-grunt-tasks' )( grunt );
 
-    grunt.registerTask( 'default', 'Removes the generated styles and watches for Sass changes', [ 'watch' ] );
+    grunt.registerTask( 'default', 'Removes the generated styles and watches for Sass changes', [ 'wellington' ] );
 
 };
