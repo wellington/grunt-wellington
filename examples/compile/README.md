@@ -1,4 +1,4 @@
-# A Wellington Watch Example
+# A Wellington Compile Example
 
 Copied with permissions from [https://github.com/pierceray/allfilesbuild](https://github.com/pierceray/allfilesbuild)
 

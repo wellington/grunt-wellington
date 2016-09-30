@@ -1,14 +1,14 @@
 {
-  "name": "wellington-watch-example",
+  "name": "grunt-wellington-example",
   "version": "1.0.0",
-  "description": "An example of how to setup a grunt watch task using grunt-wellington",
+  "description": "An example of how to setup a grunt-wellington task",
   "main": "Gruntfile.js",
   "author": "Ray Pierce",
   "license": "MIT",
   "devDependencies": {
     "grunt": "^1.0.1",
     "grunt-contrib-watch": "^1.0.0",
-    "grunt-wellington": "^0.2.0",
+    "grunt-wellington": "^0.3.0",
     "load-grunt-tasks": "^3.5.2"
   }
 }
